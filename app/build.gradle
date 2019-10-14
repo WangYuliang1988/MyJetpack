@@ -1,10 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin" // Navigation Safe Args
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
+
     defaultConfig {
         applicationId "com.yigelangzi.jetpack"
         minSdkVersion rootProject.minSdkVersion
@@ -12,22 +15,95 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        // To use VectorDrawableCompat, more info: http://chris.banes.me/2016/02/25/appcompat-vector/#enabling-the-flag
+        vectorDrawables.useSupportLibrary true
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    // The Data Binding Library is a support library that allows you
+    // to bind UI components in your layouts to data sources in your app
+    // using a declarative format rather than programmatically.
+    dataBinding {
+        enabled = true
+    }
+
+    // work-runtime-ktx requires Java 8
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+
+    // Android KTX is a set of Kotlin extensions that are included with Android Jetpack.
+    // KTX extensions provide concise, idiomatic Kotlin to Jetpack and Android platform APIs.
+    // More info: https://developer.android.com/kotlin/ktx
     implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
 
+    // Navigation is a framework for navigating between 'destinations' within an Android application that
+    // provides a consistent API whether destinations are implemented as Fragments, Activities, or other components.
+    // More info: https://developer.android.com/guide/navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
+
+    // CoordinatorLayout is a layout which provides an additional level of control over touch events between child views.
+    // More info: https://blog.mindorks.com/using-coordinator-layout-in-android
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$rootProject.coordinatorLayoutVersion"
+
+    // ViewPager2 is the replacement of ViewPager and is much better.
+    // More info: https://medium.com/google-developer-experts/exploring-the-view-pager-2-86dbce06ff71
+    implementation "androidx.viewpager2:viewpager2:$rootProject.viewPagerVersion"
+
+    // The ViewModel class is designed to store and manage UI-related data in a lifecycle conscious way.
+    // More info: https://developer.android.com/topic/libraries/architecture/viewmodel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycleVersion"
+
+    // LiveData is an observable data holder class. Unlike a regular observable, LiveData is lifecycle-aware.
+    // More info: https://developer.android.com/topic/libraries/architecture/livedata
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycleVersion"
+
+    // The Room persistence library provides an abstraction layer over SQLite to
+    // allow for more robust database access while harnessing the full power of SQLite.
+    // More info: https://developer.android.com/topic/libraries/architecture/room
+    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
+    implementation "androidx.room:room-ktx:$rootProject.roomVersion"
+
+    // Glide is a fast and efficient open source media management and image loading framework for Android.
+    // More info: https://github.com/bumptech/glide
+    kapt "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+
+    // Coroutines is a concurrency design pattern that you can use on Android to simplify code that executes asynchronously.
+    // More info: https://blog.mindorks.com/mastering-kotlin-coroutines-in-android-step-by-step-guide
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutinesVersion"
+
+    // The WorkManager API makes it easy to schedule deferrable, asynchronous tasks
+    // that are expected to run even if the app exits or device restarts.
+    // More info: https://developer.android.com/topic/libraries/architecture/workmanager
+    implementation "androidx.work:work-runtime-ktx:$rootProject.workVersion"
+
+    // Material design is a comprehensive guide for visual, motion, and interaction design across platforms and devices.
+    // More info: https://material.io/develop/android/docs/getting-started/
+    implementation "com.google.android.material:material:$rootProject.materialVersion"
+
+    // Gson is a Java library that can be used to convert Java Objects into their JSON representation.
+    // It can also be used to convert a JSON string to an equivalent Java object.
+    // More info: https://github.com/google/gson
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+
+    // Test
     androidTestImplementation "androidx.test:runner:$rootProject.runnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
     androidTestImplementation "androidx.test.ext:junit:$rootProject.extJunitVersion"

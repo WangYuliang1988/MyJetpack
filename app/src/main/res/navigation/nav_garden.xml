@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  此处涉及Jetpack中的Navigation内容，可参考：https://developer.android.com/guide/navigation/
+
+  Navigation组件负责处理App内的进入、回退等导航操作，并严格遵守导航准则：https://developer.android.com/guide/navigation/navigation-principles
+
+  Navigation组件包含三个关键部分：
+  1.导航图：即该xml文件，包含了App中所有独立的内容区域（称为destination）以及用户可以在App内形成的操作路径
+  2.NavHost：一个空的容器，用来展示导航图中的destination。Navigation组件提供了一个默认的NavHost实现，即NavHostFragment，用来展示Fragment类型的destination
+  3.NavController：用来管理App内导航行为的控制器，位于NavHost内，可通过findNavController()方法获取
+
+  若要在项目中使用Navigation组件，需要在App的Gradle文件中添加以下依赖：
+  implementation "androidx.navigation:navigation-fragment-ktx:$version"
+  implementation "androidx.navigation:navigation-ui-ktx:$version"
+
+  若要同时使用Safe Args功能（详见：https://developer.android.com/guide/navigation/navigation-pass-data#Safe-args），则需要：
+  1.在工程的Gradle文件中添加依赖：classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
+  2.在App的Gradle文件中启用插件：apply plugin: "androidx.navigation.safeargs.kotlin"
+ -->
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_garden"
+    app:startDestination="@id/view_pager_fragment">
+
+    <fragment
+        android:id="@+id/view_pager_fragment"
+        android:name="com.yigelangzi.jetpack.HomeViewPagerFragment"
+        tools:layout="@layout/fragment_view_pager">
+
+        <action
+            android:id="@+id/action_view_pager_fragment_to_plant_detail_fragment"
+            app:destination="@id/plant_detail_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/plant_detail_fragment"
+        android:name="com.yigelangzi.jetpack.PlantDetailFragment"
+        tools:layout="@layout/fragment_plant_detail">
+        <argument
+            android:name="plantId"
+            app:argType="string"/>
+    </fragment>
+
+</navigation>
