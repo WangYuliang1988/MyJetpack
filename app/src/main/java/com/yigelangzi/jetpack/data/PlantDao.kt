@@ -36,7 +36,7 @@ interface PlantDao {
      * implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
      * implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
      *
-     * suspend关键字标识该方法只能被协程调用
+     * suspend 关键字标识该方法只能被协程调用，suspend 意为暂停、挂起
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(plants: List<Plant>)

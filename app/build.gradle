@@ -14,7 +14,10 @@ android {
         targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
         versionName "1.0"
+
+        // To use JUnit 4 test classes, more info: https://developer.android.com/training/testing/unit-testing/instrumented-unit-tests
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
         // To use VectorDrawableCompat, more info: http://chris.banes.me/2016/02/25/appcompat-vector/#enabling-the-flag
         vectorDrawables.useSupportLibrary true
     }
@@ -103,9 +106,23 @@ dependencies {
     // More info: https://github.com/google/gson
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
 
-    // Test
+    // AndroidX Test, more info: https://developer.android.com/training/testing/set-up-project
+    //
+    // AndroidJUnitRunner & JUnitRules
     androidTestImplementation "androidx.test:runner:$rootProject.runnerVersion"
+    androidTestImplementation "androidx.test:rules:$rootProject.rulesVersion"
+    // Espresso, more info: https://developer.android.com/training/testing/espresso
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion" // Extension to validate and stub intents for hermetic testing.
+    // Assertions
     androidTestImplementation "androidx.test.ext:junit:$rootProject.extJunitVersion"
+
+    // Architecture Components Test
+    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestVersion"
+
+    // Work Test
+    androidTestImplementation "androidx.work:work-testing:$rootProject.workVersion"
+
+    // JUnit Test
     testImplementation "junit:junit:$rootProject.junitVersion"
 }
