@@ -24,7 +24,7 @@ class SeedDatabaseWorkerTest {
     }
 
     @Test fun testRefreshMainDataWork() {
-        val worker =  TestListenableWorkerBuilder<SeedDatabaseWorker>(context).build()
+        val worker = TestListenableWorkerBuilder<SeedDatabaseWorker>(context).build()
         val result = worker.startWork().get()
         assertThat(result, `is`(ListenableWorker.Result.success()))
     }

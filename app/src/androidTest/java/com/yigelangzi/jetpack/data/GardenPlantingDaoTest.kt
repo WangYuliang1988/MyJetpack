@@ -33,7 +33,7 @@ class GardenPlantingDaoTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Before fun createDb() = runBlocking {
-        val context =  InstrumentationRegistry.getInstrumentation().targetContext
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
         database = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java).build()
         gardenPlantingDao = database.gardenPlantingDao()
 

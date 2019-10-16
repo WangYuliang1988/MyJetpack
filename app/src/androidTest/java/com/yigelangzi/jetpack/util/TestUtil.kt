@@ -6,9 +6,6 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra
 import com.yigelangzi.jetpack.data.GardenPlanting
 import com.yigelangzi.jetpack.data.Plant
-import org.hamcrest.Matcher
-import org.hamcrest.Matchers.`is`
-import org.hamcrest.Matchers.allOf
 import java.util.Calendar
 import java.util.Calendar.DAY_OF_MONTH
 import java.util.Calendar.MONTH
@@ -16,6 +13,9 @@ import java.util.Calendar.SEPTEMBER
 import java.util.Calendar.YEAR
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
+import org.hamcrest.Matcher
+import org.hamcrest.Matchers.`is`
+import org.hamcrest.Matchers.allOf
 
 /**
  * [Plant] objects used for tests.
