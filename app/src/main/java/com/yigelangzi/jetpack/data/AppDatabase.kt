@@ -18,13 +18,13 @@ import com.yigelangzi.jetpack.worker.SeedDatabaseWorker
  *
  * 若要在项目中使用Room，需要在App的Gradle文件中添加以下依赖：
  * kapt "androidx.room:room-compiler:$version"
- * implementation "androidx.room:room-runtime:$$version"
- * implementation "androidx.room:room-ktx:$$version"
+ * implementation "androidx.room:room-runtime:$version"
+ * implementation "androidx.room:room-ktx:$version"
  *
  * Room主要包含以下3个组件：
  * Database：数据库，对应[AppDatabase]
  * Entity：表，对应[Plant]和[GardenPlanting]
- * DAO：对数据进行增删查改的数据访问对象，对应
+ * DAO：对数据进行增删查改的数据访问对象，对应[PlantDao]和[GardenPlantingDao]
  *
  */
 @Database(entities = [GardenPlanting::class, Plant::class], version = 1, exportSchema = false)
