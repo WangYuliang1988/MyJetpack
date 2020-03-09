@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: "androidx.navigation.safeargs.kotlin" // Navigation Safe Args
+apply plugin: 'androidx.navigation.safeargs.kotlin' // Navigation Safe Args
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -32,6 +32,7 @@ android {
     // The Data Binding Library is a support library that allows you
     // to bind UI components in your layouts to data sources in your app
     // using a declarative format rather than programmatically.
+    // More info: https://developer.android.com/topic/libraries/data-binding
     dataBinding {
         enabled = true
     }
